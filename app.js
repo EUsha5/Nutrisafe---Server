@@ -16,7 +16,7 @@ const MongoStore = require('connect-mongo')(session);
 mongoose.Promise = Promise;
 require('./config/passport');
 mongoose
-  .connect('mongodb://localhost/nutrisafe-server', {useNewUrlParser: true})
+  .connect(process.env.MONGODB_URI, {useNewUrlParser: true})
   .then(x => {
     console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`)
   })
