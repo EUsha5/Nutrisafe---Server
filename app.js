@@ -11,7 +11,7 @@ const logger       = require('morgan');
 const path         = require('path');
 const cors         = require('cors');
 const passport     = require('passport');
-const MongoStore = require('connect-mongo')(session);
+const MongoStore   = require('connect-mongo')(session);
 
 mongoose.Promise = Promise;
 require('./config/passport');
@@ -96,5 +96,10 @@ app.use('/api', recipeRoutes);
 const recipebookRoutes = require('./routes/api/profile-routes');
 app.use('/api', recipebookRoutes);
 
+
+app.use((req, res, next) => {
+  // If no routes match, send them the React HTML.
+  res.sendFile(__dirname + "/public/index.html");
+});
 
 module.exports = app;
