@@ -80,6 +80,7 @@ router.put('/profile/book/:id', (req, res, next)=>{
 
 //create a recipe book---------------------
 router.post('/profile/book/create', (req, res, next) => {
+  console.log('++++++++req.body+++++++++', req.body);
   RecipeBook.create({
     title:  req.body.title,
   })
