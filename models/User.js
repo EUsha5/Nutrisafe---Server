@@ -24,7 +24,12 @@ const userSchema = new Schema ({
     type: String,
     required: [true],
   },
-  recipebook: [{type: Schema.Types.ObjectId, ref: 'RecipeBook'}],
+  aboutme: {
+    type:String,
+  },
+  recipebook: [{
+    type: Schema.Types.ObjectId, ref: 'RecipeBook'
+  }],
 },
 {timestamps: true}
 );

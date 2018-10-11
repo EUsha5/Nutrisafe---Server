@@ -32,6 +32,7 @@ User.findOne({
         firstName: req.body.firstName,
         lastName:  req.body.lastName,
         email:     req.body.email,
+        aboutme:   req.body.aboutme,
     });
     console.log('-------Creating User-------', aNewUser);    
     User.create(aNewUser);
