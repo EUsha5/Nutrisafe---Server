@@ -51,7 +51,7 @@ router.put('/profile/:id', (req, res, next)=>{
 //==========Recipe Book Routes====================
 
 //view a specific book-----------------------------
-router.get('/profile/book/:id', (req, res, next)=>{
+router.get('/book/:id', (req, res, next)=>{
   if(!mongoose.Types.ObjectId.isValid(req.params.id)) {
     res.status(400).json({ message: 'Specified id is not valid' });
     return;
@@ -79,7 +79,7 @@ router.get('/profile/book/:id', (req, res, next)=>{
 // })
 
 // Update a specific book---------------------------
-router.put('/profile/book/:id', (req, res, next)=>{
+router.put('/book/:id', (req, res, next)=>{
   if(!mongoose.Types.ObjectId.isValid(req.params.id)) {
     res.status(400).json({ message: 'Specified id is not valid' });
     return;
@@ -95,7 +95,7 @@ router.put('/profile/book/:id', (req, res, next)=>{
 
 
 //create a recipe book---------------------
-router.post('/profile/book/create', (req, res, next) => {
+router.post('/book/create', (req, res, next) => {
   console.log('++++++++req.body+++++++++', req.body);
   RecipeBook.create({
     title:  req.body.title,
@@ -125,8 +125,8 @@ router.post('/profile/book/create', (req, res, next) => {
 
 
 
-//delete recipe----------------------------------------
-router.delete('/profile/book/:id', (req, res, next)=>{
+//delete recipebook----------------------------------------
+router.delete('/book/:id', (req, res, next)=>{
   if(!mongoose.Types.ObjectId.isValid(req.params.id)) {
     res.status(400).json({ message: 'Specified id is not valid' });
     return;
