@@ -3,7 +3,7 @@ const Recipe  = require('../../models/Recipe');
 const router = express.Router();
 const mongoose = require('mongoose');
 const RecipeBook = require('../../models/RecipeBook');
-
+// const axios = require('axios');
 
 router.post('/recipes/create/:id', (req, res, next) => {
     Recipe.create({
@@ -49,14 +49,15 @@ router.post('/recipes/create/:id', (req, res, next) => {
 // });
 
 // GET route => to get a specific recipe/detailed view
-router.get('/recipes/:id', (req, res, next)=>{
-  if(!mongoose.Types.ObjectId.isValid(req.params.id)) {
+router.get('/recipes/:label', (req, res, next)=>{
+  if(!mongoose.Types.ObjectId.isValid(req.params.label)) {
     res.status(400).json({ message: 'Specified id is not valid' });
     return;
   }
                                    
-  Recipe.findById(req.params.id)
+  Recipe.findOne({label: req.params.label})
     .then(response => {
+      res.session.currentRecipe = response;
       res.json(response);
     })
     .catch(err => {
@@ -93,6 +94,17 @@ router.delete('/recipes/:id', (req, res, next)=>{
     })
 })
 
+
+//Recipe Session
+
+router.get('/currentrecipe', (req, res, next) => {
+  res.json(req.session.currentRecipe)
+})
+
+router.post('/currentrecipe', (req, res, next) => {
+  req.session.currentRecipe = req.body;
+  res.json({message: 'success'})
+})
 
 
 

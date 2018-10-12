@@ -58,6 +58,7 @@ app.locals.title = 'Express - Generated with IronGenerator';
 app.use(session({
   secret: "basic-auth-secret",
   cookie: { maxAge: 600000 },
+  // currentRecipe: '',
   resave: true,
   saveUninitialized: true,
   store: new MongoStore({
